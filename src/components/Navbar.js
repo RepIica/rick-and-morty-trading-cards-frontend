@@ -2,30 +2,43 @@ import React from 'react'
 import {Fragment} from 'react'
 
 class Navbar extends React.Component {
+
+  state={
+    isClosed: false
+  }
+
   componentDidMount(){
     console.log('Navbar mounted')
     let trigger = document.querySelector('.hamburger'),
-        overlay = document.querySelector('.overlay'),
-        isClosed = false;
+        overlay = document.querySelector('.overlay')
 
     trigger.addEventListener('click',function () {
       hamburger_cross();
       document.querySelector('#wrapper').classList.toggle('toggled')
     });
 
-    function hamburger_cross() {
-      if (isClosed == true) {
+    const hamburger_cross = () => {
+      if (this.state.isClosed == true) {
         overlay.style.visibility = 'hidden';
         trigger.classList.remove('is-open');
         trigger.classList.add('is-closed');
-        isClosed = false;
+        this.setState({
+          isClosed: false
+        })
       } else {
         overlay.style.visibility = 'visibile'
         trigger.classList.remove('is-closed');
         trigger.classList.add('is-open');
-        isClosed = true;
+        this.setState({
+          isClosed: true
+        })
       }
     }
+  }
+
+  logout = ()=>{
+    document.querySelector('#wrapper').classList.toggle('toggled')
+    this.props.clickHandler()
   }
   render(){
     return(
@@ -36,7 +49,7 @@ class Navbar extends React.Component {
           <ul className="nav sidebar-nav">
             <li className="sidebar-brand" id="menu-name">
               <a href="#">
-
+                Username123
               </a>
             </li>
             <li id="menu-profile">
@@ -51,7 +64,7 @@ class Navbar extends React.Component {
             <li id="menu-new-memes">
               <a href="#">New Memes(Coming Soon)</a>
             </li>
-            <li id="menu-log-out">
+            <li id="menu-log-out" onClick={this.logout}>
               <a href="#">Log Out</a>
             </li>
             <li>

@@ -6,7 +6,7 @@ import Profile from './components/Profile.js'
 
 class App extends Component {
   state = {
-    loggedIn: false
+    loggedIn: true
   }
 
   login = (e) => {
@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div id="wrapper">
-        {this.state.loggedIn ? <Navbar/> : null}
+        {this.state.loggedIn ? <Navbar clickHandler={this.logout}/> : null}
         <div id="page-content-wrapper">
           {this.state.loggedIn ?
             <React.Fragment>
@@ -34,7 +34,7 @@ class App extends Component {
                     <NavBurger />
                   </div>
                   <div className="col-sm-3 col-sm-offset-7" align="center">
-                    <button onClick={this.logout}>Logout</button>
+                    <button className="btn btn-small" onClick={this.logout}>Logout</button>
                   </div>
                 </div>
                 <Profile />
@@ -43,7 +43,6 @@ class App extends Component {
             :
             <div className="container-fluid">
               <Splash clickHandler={this.login}/>
-
             </div>
           }
 

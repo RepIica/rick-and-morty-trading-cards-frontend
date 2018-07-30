@@ -20,30 +20,183 @@ const Profile = (props) => {
 
 
       <div className="row">
-        <div className="col-sm-4">
-          <h5>Medium</h5>
+        <div className="col-sm-3">
           <div className="card large">
             <div className="card-image">
               <img src={randomAvatar()}/>
-              <span className="card-title">Card Title</span>
+
+              <span className="card-title">Edit</span>
             </div>
             <div className="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+              <h5 className="user-name-h3">Username123</h5>
+              <p className="balance">Balance: $0</p>
+              <p>I wanna be the very best, like no one ever was. To collect all the cards is my real test, to display them is my cause!</p>
             </div>
             <div className="card-action">
-              <a href="#">link</a>
-              <a href="#">link</a>
+              <a href="#">edit profile</a>
+              <a href="#">add friend</a>
             </div>
           </div>
         </div>
 
-        <div className="col-sm-8">
+        <div className="col-sm-9">
           <ul>
-            <li>Card 1</li>
-            <li>Card 2</li>
-            <li>Card 3</li>
-            <li>Card 4</li>
-            <li>Card 5</li>
+            <li>
+              <div className="col-md-4 col-sm-6">
+                <div className="card-panel profile-card">
+                  <div className="card-image">
+                    <img src='https://rickandmortyapi.com/api/character/avatar/20.jpeg'/>
+                  </div>
+                  <div className="card-content">
+                    <p>
+                      id: 1
+                    </p>
+                    <p>
+                      name: Rick Sanchez
+                    </p>
+                    <p>
+                      status: Alive
+                    </p>
+                    <p>
+                      species: Human
+                    </p>
+                    <p>
+                      gender: Male
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="col-md-4 col-sm-6">
+                <div className="card-panel profile-card">
+                  <div className="card-image">
+                    <img src='https://rickandmortyapi.com/api/character/avatar/15.jpeg'/>
+                  </div>
+                  <div className="card-content">
+                    <p>
+                      id: 1
+                    </p>
+                    <p>
+                      name: Rick Sanchez
+                    </p>
+                    <p>
+                      status: Alive
+                    </p>
+                    <p>
+                      species: Human
+                    </p>
+                    <p>
+                      gender: Male
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="col-md-4 col-sm-6">
+                <div className="card-panel profile-card">
+                  <div className="card-image">
+                    <img src='https://rickandmortyapi.com/api/character/avatar/8.jpeg'/>
+                  </div>
+                  <div className="card-content">
+                    <p>
+                      id: 1
+                    </p>
+                    <p>
+                      name: Rick Sanchez
+                    </p>
+                    <p>
+                      status: Alive
+                    </p>
+                    <p>
+                      species: Human
+                    </p>
+                    <p>
+                      gender: Male
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="col-md-4 col-sm-6">
+                <div className="card-panel profile-card">
+                  <div className="card-image">
+                    <img src='https://rickandmortyapi.com/api/character/avatar/11.jpeg'/>
+                  </div>
+                  <div className="card-content">
+                    <p>
+                      id: 1
+                    </p>
+                    <p>
+                      name: Rick Sanchez
+                    </p>
+                    <p>
+                      status: Alive
+                    </p>
+                    <p>
+                      species: Human
+                    </p>
+                    <p>
+                      gender: Male
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="col-md-4 col-sm-6">
+                <div className="card-panel profile-card">
+                  <div className="card-image">
+                    <img src='https://rickandmortyapi.com/api/character/avatar/2.jpeg'/>
+                  </div>
+                  <div className="card-content">
+                    <p>
+                      id: 1
+                    </p>
+                    <p>
+                      name: Rick Sanchez
+                    </p>
+                    <p>
+                      status: Alive
+                    </p>
+                    <p>
+                      species: Human
+                    </p>
+                    <p>
+                      gender: Male
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="col-md-4 col-sm-6">
+                <div className="card-panel profile-card">
+                  <div className="card-image">
+                    <img src='https://rickandmortyapi.com/api/character/avatar/1.jpeg'/>
+                  </div>
+                  <div className="card-content">
+                    <p>
+                      id: 1
+                    </p>
+                    <p>
+                      name: Rick Sanchez
+                    </p>
+                    <p>
+                      status: Alive
+                    </p>
+                    <p>
+                      species: Human
+                    </p>
+                    <p>
+                      gender: Male
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
