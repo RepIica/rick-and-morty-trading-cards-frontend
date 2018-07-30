@@ -1,27 +1,52 @@
 import React, { Component } from 'react';
-import './App.css';
 import Splash from './components/Splash.js'
+import NavBurger from './components/NavBurger.js'
+import Navbar from './components/Navbar.js'
+import Profile from './components/Profile.js'
 
 class App extends Component {
   state = {
     loggedIn: false
   }
 
-  clickHandler = (e) => {
+  login = (e) => {
     this.setState({
       loggedIn: true
-    }, console.log(this.state))
-
+    }, ()=> {console.log(`loggedIn state is now`,this.state.loggedIn)})
+  }
+  logout = (e) => {
+    this.setState({
+      loggedIn: false
+    }, ()=> {console.log(`loggedIn state is now`,this.state.loggedIn)})
   }
 
 
   render() {
     return (
-      <div className="App" id="wrapper">
+      <div id="wrapper">
+        {this.state.loggedIn ? <Navbar/> : null}
         <div id="page-content-wrapper">
-          <div className="container-fluid">
-            <Splash clickHandler={this.clickHandler}/>
-          </div>
+          {this.state.loggedIn ?
+            <React.Fragment>
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-sm-2" align="center">
+                    <NavBurger />
+                  </div>
+                  <div className="col-sm-3 col-sm-offset-7" align="center">
+                    <button onClick={this.logout}>Logout</button>
+                  </div>
+                </div>
+                <Profile />
+              </div>
+            </React.Fragment>
+            :
+            <div className="container-fluid">
+              <Splash clickHandler={this.login}/>
+
+            </div>
+          }
+
         </div>
       </div>
     );

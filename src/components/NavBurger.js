@@ -1,15 +1,12 @@
 import React from 'react'
-import {Fragment} from 'react'
 
 const NavBurger = (props) => {
   return(
-    <Fragment>
-      <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-        <span class="hamb-top"></span>
-        <span class="hamb-middle"></span>
-        <span class="hamb-bottom"></span>
+      <button type="button" className="hamburger is-closed" data-toggle="offcanvas">
+        <span className="hamb-top"></span>
+        <span className="hamb-middle"></span>
+        <span className="hamb-bottom"></span>
       </button>
-    </Fragment>
   )
 }
 
