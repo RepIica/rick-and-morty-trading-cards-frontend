@@ -20,7 +20,7 @@ const createUser = (username, password) => {
 }
 
 const loginUser = (username, password) => {
-  return fetch(`${urlBase}/auth`, {
+  return fetch(`${urlBase}auth`, {
     headers: {
       'Content-Type': 'application/json',
       Accepts: 'application/json',

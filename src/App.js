@@ -44,9 +44,9 @@ class App extends Component {
     this.props.history.push('/login')
   }
 
-  submitLogin = (e) => {
-    e.preventDefault()
-    console.log('submitted')
+  submitLogin = (username, password) => {
+    loginUser(username, password)
+      .then((data) => console.log(data))
     // this.props.history.push('/login')
   }
   //

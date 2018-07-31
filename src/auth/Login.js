@@ -14,10 +14,14 @@ class Login extends React.Component {
 
   render() {
     console.log(this.props.submitHandler)
+
     return (
-      <form onSubmit={this.props.submitHandler}>
+      <form onSubmit={(e) => {
+          e.preventDefault()
+          this.props.submitHandler(this.state.username, this.state.password)
+        }}>
         <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.onInputChange}/>
-      <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.onInputChange}/>
+        <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.onInputChange}/>
         <input type="submit" />
       </form>
     )
