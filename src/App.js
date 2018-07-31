@@ -1,23 +1,58 @@
 import React, { Component } from 'react';
 import Splash from './components/Splash.js'
+import Profile from './components/Profile.js'
+import AuthAction from './auth/AuthAction.js'
+import RickAndMortyContainer from './components/RickAndMortyContainer.js'
 import NavBurger from './components/NavBurger.js'
 import Navbar from './components/Navbar.js'
-import Profile from './components/Profile.js'
 
 class App extends Component {
   state = {
-    loggedIn: true
+    loggedIn: false,
+    clicked: false
   }
+//
+//   submitSignUp = (username, password) => {
+//   createUser(username, password).then((data) => {
+//     getCurrentUser(data.token).then((user) => {
+//       this.setState({ current_user: user }, () => {
+//         localStorage.setItem('token', data.token)
+//         this.props.history.push('/')
+//       })
+//     })
+//   })
+// }
+//
+// submitLogin = (username, password) => {
+//   loginUser(username, password).then((data) => {
+//     getCurrentUser(data.token).then((user) => {
+//       this.setState({ current_user: user }, () => {
+//         localStorage.setItem('token', data.token)
+//         this.props.history.push('/')
+//       })
+//     })
+//
+//   })
+// }
 
   login = (e) => {
+    e.preventDefault()
     this.setState({
       loggedIn: true
-    }, ()=> {console.log(`loggedIn state is now`,this.state.loggedIn)})
+    }, () => {console.log(`loggedIn state is now`,this.state.loggedIn)})
   }
+
+  clicked = () => {
+    this.setState({
+      clicked: true
+    }, () => {console.log(`clicked state is now`,this.state.clicked)})
+  }
+
   logout = (e) => {
+
     this.setState({
       loggedIn: false
-    }, ()=> {console.log(`loggedIn state is now`,this.state.loggedIn)})
+    }, () => {console.log(`loggedIn state is now`,this.state.loggedIn)})
   }
 
 
@@ -42,10 +77,9 @@ class App extends Component {
             </React.Fragment>
             :
             <div className="container-fluid">
-              <Splash clickHandler={this.login}/>
+              {this.state.clicked ? <AuthAction clickHandler={this.login} /> : <Splash clickHandler={this.clicked}/>}
             </div>
           }
-
         </div>
       </div>
     );
