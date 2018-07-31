@@ -1,7 +1,6 @@
 
 const urlBase = `https://rickandmortyapi.com/api/`
 
-
 const makeRickAndMortyRequest = () => {
   return fetch(`${urlBase}/characters`).then(resp => resp.json())
 }

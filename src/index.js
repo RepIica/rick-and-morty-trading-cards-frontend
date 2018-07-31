@@ -5,6 +5,10 @@ import registerServiceWorker from './registerServiceWorker';
 import '../node_modules/materialize-css/dist/css/materialize.css'
 import '../node_modules/materialize-css/dist/js/materialize.min.js'
 import './index.css';
+import { BrowserRouter } from 'react-router-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<BrowserRouter>
+                  <App />
+                </BrowserRouter>,
+                document.getElementById('root'));
 registerServiceWorker();

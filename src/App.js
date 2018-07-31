@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import Splash from './components/Splash.js'
 import Profile from './components/Profile.js'
-import AuthAction from './auth/AuthAction.js'
+import Login from './auth/Login.js'
+import Signup from './auth/Signup.js'
 import RickAndMortyContainer from './components/RickAndMortyContainer.js'
 import NavBurger from './components/NavBurger.js'
 import Navbar from './components/Navbar.js'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
+import { makeRickAndMortyRequest, creatUser, loginUser, getCurrentUser } from './adapter/adapter'
 
 class App extends Component {
   state = {
+    current_user: null,
     loggedIn: false,
     clicked: false
   }
@@ -23,67 +27,77 @@ class App extends Component {
 //   })
 // }
 //
-// submitLogin = (username, password) => {
-//   loginUser(username, password).then((data) => {
-//     getCurrentUser(data.token).then((user) => {
-//       this.setState({ current_user: user }, () => {
-//         localStorage.setItem('token', data.token)
-//         this.props.history.push('/')
-//       })
-//     })
-//
-//   })
-// }
+  //
+  // submitLogin = (username, password) => {
+  //   loginUser(username, password).then((data) => {
+  //     getCurrentUser(data.token).then((user) => {
+  //       this.setState({ current_user: user }, () => {
+  //         localStorage.setItem('token', data.token)
+  //         this.props.history.push('/')
+  //       })
+  //     })
+  //
+  //   })
+  // }
 
-  login = (e) => {
+  loginClicked = (e) => {
+    this.props.history.push('/login')
+  }
+
+  submitLogin = (e) => {
     e.preventDefault()
-    this.setState({
-      loggedIn: true
-    }, () => {console.log(`loggedIn state is now`,this.state.loggedIn)})
+    console.log('submitted')
+    // this.props.history.push('/login')
   }
-
-  clicked = () => {
-    this.setState({
-      clicked: true
-    }, () => {console.log(`clicked state is now`,this.state.clicked)})
-  }
-
-  logout = (e) => {
-
-    this.setState({
-      loggedIn: false
-    }, () => {console.log(`loggedIn state is now`,this.state.loggedIn)})
-  }
-
+  //
+  // logout = (e) => {
+  //   this.setState({
+  //     loggedIn: false
+  //   }, () => {console.log(`loggedIn state is now`,this.state.loggedIn)})
+  // }
 
   render() {
     return (
       <div id="wrapper">
         {this.state.loggedIn ? <Navbar clickHandler={this.logout}/> : null}
         <div id="page-content-wrapper">
-          {this.state.loggedIn ?
-            <React.Fragment>
-              <div className="container-fluid">
-                <div className="row">
-                  <div className="col-sm-2" align="center">
-                    <NavBurger />
-                  </div>
+          <Switch>
+
+
+            <Route path="/profile" render={() => {
+              return (
+                <React.Fragment>
                   <div className="col-sm-3 col-sm-offset-7" align="center">
                     <button className="btn btn-small" onClick={this.logout}>Logout</button>
                   </div>
-                </div>
-                <Profile />
-              </div>
-            </React.Fragment>
-            :
-            <div className="container-fluid">
-              {this.state.clicked ? <AuthAction clickHandler={this.login} /> : <Splash clickHandler={this.clicked}/>}
-            </div>
-          }
-        </div>
+                  <Profile />
+                </React.Fragment>
+              )
+            }} />
+
+            <Route path="/login" render={() => {
+              return (
+                <Login submitHandler={this.submitLogin} />
+              )
+            }} />
+
+            <Route path="/signup" render={() => {
+              return (
+                <Signup />
+              )
+            }} />
+
+            <Route path="/" render={() => {
+                return (
+                  <Splash clickHandler={this.loginClicked} />
+                )
+            }}/>
+
+          </Switch>
       </div>
+    </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

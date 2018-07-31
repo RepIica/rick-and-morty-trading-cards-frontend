@@ -1,6 +1,6 @@
 import React from 'react'
 import {Fragment} from 'react'
-import AuthAction from '../auth/AuthAction.js'
+
 
 
 const Splash = (props) => {
