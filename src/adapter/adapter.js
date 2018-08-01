@@ -5,6 +5,12 @@ const makeRickAndMortyRequest = () => {
   return fetch(`${urlBase}/characters`).then(resp => resp.json())
 }
 
+const getRandCard = () => {
+  const randNum = Math.floor(Math.random() * 493) + 1;
+  return fetch(`${urlBase}/decks/${randNum}`)
+    .then(r => r.json())
+}
+
 const createUser = (username, password) => {
   return fetch(`${urlBase}/users`, {
     headers: {
@@ -71,6 +77,7 @@ export {
   createUser,
   loginUser,
   getCurrentUser,
+  getRandCard
   // makeUserTeamRequest,
   // setUserTeam
 }

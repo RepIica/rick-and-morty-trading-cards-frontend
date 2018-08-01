@@ -64,6 +64,7 @@ class App extends Component {
   }
 
   logout = () => {
+    localStorage.removeItem('token')
     this.setState({
       currentUser: null
     }, () => {console.log(`currentUser state is now`,this.state.currentUser)})

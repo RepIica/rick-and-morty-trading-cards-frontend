@@ -1,209 +1,77 @@
 import React from 'react'
 import {Fragment} from 'react'
 import {avatars} from '../defaultAvatars.js'
-
-const randomAvatar = () => {
-  const url = avatars[Math.floor(Math.random() * 10) % avatars.length]
-  console.log(url);
-  return url
-}
-
-const Profile = (props) => {
-  const user = props.user
-  return(
-    <Fragment>
-
-      <div className="row">
-        <div className="col-xs-12" align="center">
-          <h3 className="profile-h">Profile</h3>
-        </div>
-      </div>
+import { getRandCard } from '../adapter/adapter.js'
+import Card from './Card.js'
 
 
-      <div className="row">
-        <div className="col-sm-3">
-          <div className="card large">
-            <div className="card-image">
-              <img src={randomAvatar()}/>
+class Profile extends React.Component {
+  state={
+    cards: []
+  }
+  user = this.props.user
+  // cards =
+  componentDidMount(){
+    for (let i = 0; i < 6; i++) {
+      getRandCard()
+        .then(obj => {
+          console.log(obj)
+          this.setState((previousState)=>{
+            return {
+              cards: [...previousState.cards, obj["api_data"]]
+            }
+          })
 
-              <span className="card-title">Edit Avatar</span>
-            </div>
-            <div className="card-content">
-              <h5 className="user-name-h3">{user.username}</h5>
-              <p className="balance">Balance: ${user.balance}</p>
-              <p>{user.bio}</p>
-            </div>
-            <div className="card-action">
-              <a href="#">edit profile</a>
-              <a href="#">add friend</a>
-            </div>
+        })
+    }
+  }
+
+  randomAvatar = () => {
+    const url = avatars[Math.floor(Math.random() * 10) % avatars.length]
+    return url
+  }
+  render(){
+    return(
+      <Fragment>
+
+        <div className="row">
+          <div className="col-xs-12" align="center">
+            <h3 className="profile-h">Profile</h3>
           </div>
         </div>
 
-        <div className="col-sm-9">
-          <ul>
-            <li>
-              <div className="col-md-4 col-sm-6">
-                <div className="card-panel profile-card">
-                  <div className="card-image">
-                    <img src='https://rickandmortyapi.com/api/character/avatar/20.jpeg'/>
-                  </div>
-                  <div className="card-content">
-                    <p>
-                      id: 1
-                    </p>
-                    <p>
-                      name: Rick Sanchez
-                    </p>
-                    <p>
-                      status: Alive
-                    </p>
-                    <p>
-                      species: Human
-                    </p>
-                    <p>
-                      gender: Male
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="col-md-4 col-sm-6">
-                <div className="card-panel profile-card">
-                  <div className="card-image">
-                    <img src='https://rickandmortyapi.com/api/character/avatar/15.jpeg'/>
-                  </div>
-                  <div className="card-content">
-                    <p>
-                      id: 1
-                    </p>
-                    <p>
-                      name: Rick Sanchez
-                    </p>
-                    <p>
-                      status: Alive
-                    </p>
-                    <p>
-                      species: Human
-                    </p>
-                    <p>
-                      gender: Male
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="col-md-4 col-sm-6">
-                <div className="card-panel profile-card">
-                  <div className="card-image">
-                    <img src='https://rickandmortyapi.com/api/character/avatar/8.jpeg'/>
-                  </div>
-                  <div className="card-content">
-                    <p>
-                      id: 1
-                    </p>
-                    <p>
-                      name: Rick Sanchez
-                    </p>
-                    <p>
-                      status: Alive
-                    </p>
-                    <p>
-                      species: Human
-                    </p>
-                    <p>
-                      gender: Male
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="col-md-4 col-sm-6">
-                <div className="card-panel profile-card">
-                  <div className="card-image">
-                    <img src='https://rickandmortyapi.com/api/character/avatar/11.jpeg'/>
-                  </div>
-                  <div className="card-content">
-                    <p>
-                      id: 1
-                    </p>
-                    <p>
-                      name: Rick Sanchez
-                    </p>
-                    <p>
-                      status: Alive
-                    </p>
-                    <p>
-                      species: Human
-                    </p>
-                    <p>
-                      gender: Male
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="col-md-4 col-sm-6">
-                <div className="card-panel profile-card">
-                  <div className="card-image">
-                    <img src='https://rickandmortyapi.com/api/character/avatar/2.jpeg'/>
-                  </div>
-                  <div className="card-content">
-                    <p>
-                      id: 1
-                    </p>
-                    <p>
-                      name: Rick Sanchez
-                    </p>
-                    <p>
-                      status: Alive
-                    </p>
-                    <p>
-                      species: Human
-                    </p>
-                    <p>
-                      gender: Male
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="col-md-4 col-sm-6">
-                <div className="card-panel profile-card">
-                  <div className="card-image">
-                    <img src='https://rickandmortyapi.com/api/character/avatar/1.jpeg'/>
-                  </div>
-                  <div className="card-content">
-                    <p>
-                      id: 1
-                    </p>
-                    <p>
-                      name: Rick Sanchez
-                    </p>
-                    <p>
-                      status: Alive
-                    </p>
-                    <p>
-                      species: Human
-                    </p>
-                    <p>
-                      gender: Male
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
 
-    </Fragment>
-  )
+        <div className="row">
+          <div className="col-sm-3">
+            <div className="card large">
+              <div className="card-image">
+                <img src={this.randomAvatar()}/>
+
+                <span className="card-title">Edit Avatar</span>
+              </div>
+              <div className="card-content">
+                <h5 className="user-name-h3">{this.user.username}</h5>
+                <p className="balance">Balance: ${this.user.balance}</p>
+                <p>{this.user.bio}</p>
+              </div>
+              <div className="card-action">
+                <a href="#">edit profile</a>
+                <a href="#">add friend</a>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-sm-9 card-container">
+            <ul>
+              {this.state.cards.map(obj => <Card cardObj={obj} key={obj.id}/>)}
+            </ul>
+          </div>
+
+        </div>
+
+      </Fragment>
+    )
+  }
 }
 
 export default Profile
