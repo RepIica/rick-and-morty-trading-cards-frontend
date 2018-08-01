@@ -1,5 +1,5 @@
 
-const urlBase = `https://rickandmortyapi.com/api/`
+const urlBase = `http://localhost:3001/api/v1`
 
 const makeRickAndMortyRequest = () => {
   return fetch(`${urlBase}/characters`).then(resp => resp.json())
@@ -20,7 +20,7 @@ const createUser = (username, password) => {
 }
 
 const loginUser = (username, password) => {
-  return fetch(`${urlBase}auth`, {
+  return fetch(`http://localhost:3001/api/v1/auth`, {
     headers: {
       'Content-Type': 'application/json',
       Accepts: 'application/json',

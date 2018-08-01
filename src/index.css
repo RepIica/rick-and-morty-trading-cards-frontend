@@ -1,8 +1,20 @@
+html{
+  min-height: 100vh;
+  width: 100%;
+}
 body {
+  /* background-color: rgb(28, 36, 55); */
+  width: 100%;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: rgba(33, 36, 41, 1);
+  background-color: #212429;
+  /* background-image: linear-gradient(to right bottom, #212429, #22272c, #232a2f, #242d31, #253033); */
+  background-image: linear-gradient(to top, #212429, #21262c, #21292e, #212b30, #212e32);
+  background-image: linear-gradient(to top, #212429, #20262c, #1e282e, #1c2a30, #1a2c31);
+  background: linear-gradient(to top, #0f1f24, #2d4a53);
+  /* background-image: linear-gradient(to right, #2d4a53, #253f47, #1d343b, #16292f, #0f1f24); */
   color: rgb(181, 181, 181);
 }
 .btn{
@@ -14,11 +26,14 @@ body {
 .btn-small{
   width: 100px;
 }
+.burgerDiv .hamburger:hover,.hamburger:focus{
+  background: none;
+}
 .balance{
   font-style: italic;
 }
 .card{
-  background-color: rgba(37, 40, 46, 1);
+  background-color: rgba(37, 40, 46, 0.2);
   color: rgb(181, 181, 181);
   font-size: 0.7em;
 }
@@ -46,17 +61,10 @@ body {
 }
 .card-panel.profile-card{
   font-size: 0.7em;
-  background-color: rgba(37, 40, 46, 1);
+  background-color: rgba(37, 40, 46, 0.2);
   color: rgb(181, 181, 181);
   padding: 0px;
   width: 250px;
-}
-.profile-card .card-content{
-  padding: 10px;
-}
-.profile-card .card-content p{
-  color: rgb(148, 148, 148);
-  margin-bottom: 0px;
 }
 .card.large .card-content{
   padding: 10px;
@@ -64,6 +72,10 @@ body {
 }
 .card.large .card-image + .card-content {
   min-height: 300px;
+}
+.card .card-image .card-title{
+  padding: 6px;
+  font-size: 14px;
 }
 .homepage{
   margin-top: 2%;
@@ -77,6 +89,18 @@ body {
 .homepage .row{
   position:absolute;
   bottom: 5%;
+}
+.profile-card .card-content{
+  padding: 10px;
+}
+.profile-card .card-content p{
+  color: rgb(148, 148, 148);
+  color: white;
+  margin-bottom: 0px;
+}
+.profile-h{
+  color: rgb(208, 208, 208);
+  letter-spacing: 3px;
 }
 .user-name-h3{
   margin: 0;

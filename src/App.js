@@ -11,15 +11,14 @@ import { makeRickAndMortyRequest, creatUser, loginUser, getCurrentUser } from '.
 
 class App extends Component {
   state = {
-    current_user: null,
-    loggedIn: false,
+    currentUser: null,
     clicked: false
   }
 //
 //   submitSignUp = (username, password) => {
 //   createUser(username, password).then((data) => {
 //     getCurrentUser(data.token).then((user) => {
-//       this.setState({ current_user: user }, () => {
+//       this.setState({ currentUser: user }, () => {
 //         localStorage.setItem('token', data.token)
 //         this.props.history.push('/')
 //       })
@@ -27,73 +26,93 @@ class App extends Component {
 //   })
 // }
 //
-  //
-  // submitLogin = (username, password) => {
-  //   loginUser(username, password).then((data) => {
-  //     getCurrentUser(data.token).then((user) => {
-  //       this.setState({ current_user: user }, () => {
-  //         localStorage.setItem('token', data.token)
-  //         this.props.history.push('/')
-  //       })
-  //     })
-  //
-  //   })
-  // }
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      getCurrentUser(localStorage.getItem('token')).then((user) => {
+        if (user) {
+          this.setState({
+            currentUser: user
+          })
+        } else {
+          this.logout()
+        }
+      })
 
+    }
+
+  }
+  submitLogin = (username, password) => {
+    loginUser(username, password).then((data) => {
+      getCurrentUser(data.token).then((user) => {
+        this.setState({ currentUser: user }, () => {
+          localStorage.setItem('token', data.token)
+          this.props.history.push('/profile')
+        })
+      })
+
+    })
+  }
+
+  profileClicked = (e) => {
+    this.props.history.push('/profile')
+  }
   loginClicked = (e) => {
     this.props.history.push('/login')
   }
-
-  submitLogin = (username, password) => {
-    loginUser(username, password)
-      .then((data) => console.log(data))
-    // this.props.history.push('/login')
+  signupClicked = (e) => {
+    this.props.history.push('/signup')
   }
-  //
-  // logout = (e) => {
-  //   this.setState({
-  //     loggedIn: false
-  //   }, () => {console.log(`loggedIn state is now`,this.state.loggedIn)})
-  // }
+
+  logout = () => {
+    this.setState({
+      currentUser: null
+    }, () => {console.log(`currentUser state is now`,this.state.currentUser)})
+  }
 
   render() {
     return (
       <div id="wrapper">
-        {this.state.loggedIn ? <Navbar clickHandler={this.logout}/> : null}
+        {this.state.currentUser ? <Navbar clickHandler={this.logout} profileHandler={this.profileClicked} user={this.state.currentUser}/> : null}
         <div id="page-content-wrapper">
-          <Switch>
+          <div className="container-fluid">
+            {this.state.currentUser ?
+              <div className="col-sm-2 burgerDiv" align="center">
+                <NavBurger />
+              </div>
+              : null}
 
-
-            <Route path="/profile" render={() => {
-              return (
-                <React.Fragment>
-                  <div className="col-sm-3 col-sm-offset-7" align="center">
-                    <button className="btn btn-small" onClick={this.logout}>Logout</button>
-                  </div>
-                  <Profile />
-                </React.Fragment>
-              )
-            }} />
-
-            <Route path="/login" render={() => {
-              return (
-                <Login submitHandler={this.submitLogin} />
-              )
-            }} />
-
-            <Route path="/signup" render={() => {
-              return (
-                <Signup />
-              )
-            }} />
-
-            <Route path="/" render={() => {
-                return (
-                  <Splash clickHandler={this.loginClicked} />
+            <Switch>
+              <Route path="/profile" render={() => {
+                return (this.state.currentUser ?
+                  <React.Fragment>
+                    <div className="col-sm-3 col-sm-offset-7" align="center">
+                      <button className="btn btn-small" onClick={this.logout}>Logout</button>
+                    </div>
+                    <Profile user={this.state.currentUser}/>
+                  </React.Fragment>
+                  : <Redirect to="/login" />
                 )
-            }}/>
+              }} />
 
-          </Switch>
+              <Route path="/login" render={() => {
+                return (this.state.currentUser ? <Redirect to="/profile" />
+                  : <Login submitHandler={this.submitLogin} />)
+              }} />
+
+              <Route path="/signup" render={() => {
+                return (
+                  <Signup />
+                )
+              }} />
+
+              <Route path="/" render={() => {
+                return (
+                  <Splash clickHandler={this.loginClicked} signupClickHandler={this.signupClicked}/>
+                )
+              }}/>
+
+            </Switch>
+          </div>
       </div>
     </div>
     );

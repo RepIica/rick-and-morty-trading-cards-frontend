@@ -14,11 +14,15 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.props.clickHandler}>
-        <input type="text" name="username" placeholder="username"  />
-        <input type="password" name="password" placeholder="password" />
-        <input type="submit" />
-      </form>
+      <React.Fragment>
+        <br/><br/><br/>
+        <h1>SIGN UP COMING SOON</h1><br/><br/><br/><br/>
+        <form onSubmit={this.props.clickHandler}>
+          <input type="text" name="username" placeholder="username"  />
+          <input type="password" name="password" placeholder="password" />
+          <input type="submit" />
+        </form>
+      </React.Fragment>
     )
   }
 }

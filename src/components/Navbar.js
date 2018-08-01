@@ -49,29 +49,23 @@ class Navbar extends React.Component {
           <ul className="nav sidebar-nav">
             <li className="sidebar-brand" id="menu-name">
               <a href="#">
-                Username123
+                {this.props.user.username}
               </a>
             </li>
-            <li id="menu-profile">
+            <li id="menu-profile" onClick={this.props.profileHandler}>
               <a href="#">Profile</a>
             </li>
             <li id="menu-chatbox">
-              <a href="#">Chatbox</a>
+              <a href="#">Add Friend(coming soon)</a>
             </li>
             <li id="menu-top-memes">
-              <a href="#">Top Memes</a>
-            </li>
-            <li id="menu-new-memes">
-              <a href="#">New Memes(Coming Soon)</a>
+              <a href="#">FAQ(coming soon)</a>
             </li>
             <li id="menu-log-out" onClick={this.logout}>
               <a href="#">Log Out</a>
             </li>
             <li>
-              <a href="#">Contact</a>
-            </li>
-            <li>
-              <a href="https://twitter.com/maridlcrmn">Follow me</a>
+              <a href="http://sendhere.net/#contact">Contact</a>
             </li>
           </ul>
         </nav>

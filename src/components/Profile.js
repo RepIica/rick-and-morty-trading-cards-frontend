@@ -9,12 +9,13 @@ const randomAvatar = () => {
 }
 
 const Profile = (props) => {
+  const user = props.user
   return(
     <Fragment>
 
       <div className="row">
         <div className="col-xs-12" align="center">
-          <h3>Profile</h3>
+          <h3 className="profile-h">Profile</h3>
         </div>
       </div>
 
@@ -25,12 +26,12 @@ const Profile = (props) => {
             <div className="card-image">
               <img src={randomAvatar()}/>
 
-              <span className="card-title">Edit</span>
+              <span className="card-title">Edit Avatar</span>
             </div>
             <div className="card-content">
-              <h5 className="user-name-h3">Username123</h5>
-              <p className="balance">Balance: $0</p>
-              <p>I wanna be the very best, like no one ever was. To collect all the cards is my real test, to display them is my cause!</p>
+              <h5 className="user-name-h3">{user.username}</h5>
+              <p className="balance">Balance: ${user.balance}</p>
+              <p>{user.bio}</p>
             </div>
             <div className="card-action">
               <a href="#">edit profile</a>
