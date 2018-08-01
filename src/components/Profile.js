@@ -62,9 +62,9 @@ class Profile extends React.Component {
           </div>
 
           <div className="col-sm-9 card-container">
-            <ul>
+            <div className="row">
               {this.state.cards.map(obj => <Card cardObj={obj} key={obj.id}/>)}
-            </ul>
+            </div>
           </div>
 
         </div>

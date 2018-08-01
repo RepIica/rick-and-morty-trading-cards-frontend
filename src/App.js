@@ -91,7 +91,7 @@ class App extends Component {
                     </div>
                     <Profile user={this.state.currentUser}/>
                   </React.Fragment>
-                  : <Redirect to="/login" />
+                  : <Redirect to="/" />
                 )
               }} />
 
