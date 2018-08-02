@@ -49,27 +49,31 @@ const getCurrentUser = (token) => {
   }).then(res => res.json())
 }
 
-// const makeUserTeamRequest = (id, token) => {
-//   return fetch(`${urlBase}/users/${id}/friends`, {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Accepts: 'application/json',
-//       Authorization: token
-//     }
-//   }).then(res => res.json())
-// }
-//
-// const setUserTeam = (id, token, pokemon) => {
-//   return fetch(`${urlBase}/users/${id}/pokemon`, {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Accepts: 'application/json',
-//       Authorization: token
-//     },
-//     method: 'POST',
-//     body: JSON.stringify({ pokemon })
-//   }).then(res => res.json())
-// }
+const getUsers = () => {
+  return fetch(`${urlBase}/users`)
+    .then(r => r.json())
+}
+
+const createFriendRequest = (requested_user_id, requester_user_id, token) => {
+  const body = {
+    friend_request: {
+      requested_user_id: requested_user_id,
+      requester_user_id: requester_user_id
+    }
+  }
+
+  return fetch(`${urlBase}/friend_requests`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accepts: 'application/json',
+      Authorization: token
+    },
+      body: JSON.stringify(body)
+  })
+    .then(res => res.json())
+}
+
 
 
 export {
@@ -77,6 +81,7 @@ export {
   createUser,
   loginUser,
   getCurrentUser,
+  getUsers,
   getRandCard
   // makeUserTeamRequest,
   // setUserTeam

@@ -7,12 +7,14 @@ import RickAndMortyContainer from './components/RickAndMortyContainer.js'
 import NavBurger from './components/NavBurger.js'
 import Navbar from './components/Navbar.js'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
-import { makeRickAndMortyRequest, creatUser, loginUser, getCurrentUser } from './adapter/adapter'
+import { makeRickAndMortyRequest, creatUser, loginUser, getCurrentUser, getUsers } from './adapter/adapter'
 
 class App extends Component {
   state = {
     currentUser: null,
-    clicked: false
+    clicked: false,
+    users: null,
+    showUsers: false
   }
 //
 //   submitSignUp = (username, password) => {
@@ -39,6 +41,14 @@ class App extends Component {
       })
 
     }
+    getUsers()
+      .then(arr=>{
+        this.setState(() => {
+          return {
+            users: arr
+          }
+        },()=>{console.log(this.state.users)})
+      })
 
   }
   submitLogin = (username, password) => {
@@ -70,10 +80,17 @@ class App extends Component {
     }, () => {console.log(`currentUser state is now`,this.state.currentUser)})
   }
 
+  showUsers = () => {
+    // debugger
+    this.setState({
+      showUsers: true
+    })
+  }
+
   render() {
     return (
       <div id="wrapper">
-        {this.state.currentUser ? <Navbar clickHandler={this.logout} profileHandler={this.profileClicked} user={this.state.currentUser}/> : null}
+        {this.state.currentUser ? <Navbar clickHandler={this.logout} profileHandler={this.profileClicked} user={this.state.currentUser} usersHandler={this.showUsers}/> : null}
         <div id="page-content-wrapper">
           <div className="container-fluid">
             {this.state.currentUser ?
@@ -81,7 +98,15 @@ class App extends Component {
                 <NavBurger />
               </div>
               : null}
-
+            {this.state.showUsers?
+              <div className="users">
+                <h1>USERS</h1>
+                {this.state.users.map((user) => {
+                  return <li>{user.name}</li>
+                })}
+              </div>
+              : null
+            }
             <Switch>
               <Route path="/profile" render={() => {
                 return (this.state.currentUser ?

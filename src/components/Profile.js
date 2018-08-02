@@ -1,13 +1,14 @@
 import React from 'react'
 import {Fragment} from 'react'
 import {avatars} from '../defaultAvatars.js'
-import { getRandCard } from '../adapter/adapter.js'
+import { getRandCard, getUsers } from '../adapter/adapter.js'
 import Card from './Card.js'
 
 
 class Profile extends React.Component {
   state={
-    cards: []
+    cards: [],
+    users: null
   }
   user = this.props.user
   // cards =
@@ -15,7 +16,7 @@ class Profile extends React.Component {
     for (let i = 0; i < 6; i++) {
       getRandCard()
         .then(obj => {
-          console.log(obj)
+          // console.log(obj)
           this.setState((previousState)=>{
             return {
               cards: [...previousState.cards, obj["api_data"]]
@@ -24,6 +25,15 @@ class Profile extends React.Component {
 
         })
     }
+    getUsers()
+      .then(arr=>{
+        this.setState(() => {
+          return {
+            users: arr
+          }
+        })
+
+      })
   }
 
   randomAvatar = () => {

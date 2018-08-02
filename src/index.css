@@ -105,6 +105,10 @@ body {
 .user-name-h3{
   margin: 0;
 }
+.users{
+  background-color: rgba(0, 0, 0, 0.85);
+  position: absolute;
+}
 /*-----------------------------------------------*/
 /*                  Sidebar Nav                  */
 /*-----------------------------------------------*/

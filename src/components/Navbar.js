@@ -56,7 +56,7 @@ class Navbar extends React.Component {
               <a href="#">Profile</a>
             </li>
             <li id="menu-chatbox">
-              <a href="#">Add Friend(coming soon)</a>
+              <a href="#" onClick={this.props.usersHandler}>Add Friend(coming soon)</a>
             </li>
             <li id="menu-top-memes">
               <a href="#">FAQ(coming soon)</a>
